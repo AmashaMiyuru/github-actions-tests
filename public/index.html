@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Actions CI/CD Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .status {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 10px;
+        }
+
+        .status.error {
+            background: #ef4444;
+        }
+
+        .workflows {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .workflow {
+            background: white;
+            border: 2px solid #e5e7eb;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .workflow-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .workflow-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f3f4f6;
+            color: #333;
+            border: 2px solid #e5e7eb;
+        }
+
+        .btn-secondary:hover {
+            background: #e5e7eb;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .info-text {
+            color: #666;
+            font-size: 0.95em;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .success-message {
+            background: #d1fae5;
+            color: #065f46;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #7f1d1d;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 CI/CD Test Hub</h1>
+            <p>GitHub Actions Pipeline Monitor</p>
+        </div>
+
+        <div class="content">
+            <div class="card">
+                <h3>Welcome to the Test Server</h3>
+                <p>This application is designed to test GitHub Actions CI/CD workflows. The server is running and ready to receive requests.</p>
+                <div class="status">✓ Server Active</div>
+            </div>
+
+            <div class="card">
+                <h3>📊 API Status</h3>
+                <div id="status-info">
+                    <div class="loading"></div> Checking server status...
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔄 Available Workflows</h3>
+                <div class="workflows">
+                    <div class="workflow">
+                        <span class="workflow-name">CI - Build & Test</span>
+                        <div class="workflow-status">
+                            <span class="status-badge"></span>
+                            Active
+                        </div>
+                    </div>
+                    <div class="workflow">
+                        <span class="workflow-name">CD - Deploy</span>
+                        <div class="workflow-status">
+                            <span class="status-badge"></span>
+                            Active
+                        </div>
+                    </div>
+                </div>
+                <p class="info-text">Workflows run automatically on push and pull requests. View detailed logs on GitHub Actions.</p>
+            </div>
+
+            <div class="card">
+                <h3>🧪 Test the API</h3>
+                <div class="button-group">
+                    <button class="btn-primary" onclick="testAPI()">Test Root Endpoint</button>
+                    <button class="btn-secondary" onclick="testHealth()">Health Check</button>
+                </div>
+                <div id="api-response"></div>
+                <div class="success-message" id="success-msg"></div>
+                <div class="error-message" id="error-msg"></div>
+            </div>
+
+            <div class="card">
+                <h3>📝 Next Steps</h3>
+                <p class="info-text">
+                    ✅ Push this repository to GitHub<br>
+                    ✅ Workflows will run automatically<br>
+                    ✅ View results in the Actions tab<br>
+                    ✅ Monitor builds and deployments<br>
+                    ✅ Integrate with your pipeline
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>GitHub Actions CI/CD Test Repository | Ready for testing workflows</p>
+        </div>
+    </div>
+
+    <script>
+        // Check server status on page load
+        window.addEventListener('load', () => {
+            fetch('/health')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status-info').innerHTML = `
+                        <div class="status">✓ Status: ${data.status}</div>
+                        <p class="info-text" style="margin-top: 10px;">Server is running and responding to requests.</p>
+                    `;
+                })
+                .catch(error => {
+                    document.getElementById('status-info').innerHTML = `
+                        <div class="status error">✗ Error connecting to server</div>
+                    `;
+                });
+        });
+
+        function testAPI() {
+            const responseDiv = document.getElementById('api-response');
+            const successMsg = document.getElementById('success-msg');
+            const errorMsg = document.getElementById('error-msg');
+
+            responseDiv.innerHTML = '<div class="loading"></div> Testing API...';
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            fetch('/')
+                .then(response => response.json())
+                .then(data => {
+                    responseDiv.innerHTML = `<pre style="background: #f3f4f6; padding: 10px; border-radius: 6px; overflow-x: auto;">GET / \n\n${JSON.stringify(data, null, 2)}</pre>`;
+                    successMsg.textContent = '✓ API test successful!';
+                    successMsg.style.display = 'block';
+                })
+                .catch(error => {
+                    responseDiv.innerHTML = '';
+                    errorMsg.textContent = '✗ Error: ' + error.message;
+                    errorMsg.style.display = 'block';
+                });
+        }
+
+        function testHealth() {
+            const responseDiv = document.getElementById('api-response');
+            const successMsg = document.getElementById('success-msg');
+            const errorMsg = document.getElementById('error-msg');
+
+            responseDiv.innerHTML = '<div class="loading"></div> Testing health check...';
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+
+            fetch('/health')
+                .then(response => response.json())
+                .then(data => {
+                    responseDiv.innerHTML = `<pre style="background: #f3f4f6; padding: 10px; border-radius: 6px; overflow-x: auto;">GET /health \n\n${JSON.stringify(data, null, 2)}</pre>`;
+                    successMsg.textContent = '✓ Health check passed!';
+                    successMsg.style.display = 'block';
+                })
+                .catch(error => {
+                    responseDiv.innerHTML = '';
+                    errorMsg.textContent = '✗ Error: ' + error.message;
+                    errorMsg.style.display = 'block';
+                });
+        }
+    </script>
+</body>
+</html>
