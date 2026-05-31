@@ -1,12 +1,11 @@
-name: CD - Deploy
+name: CD - Deploy to Azure Staging
 
 on:
   push:
     branches: [ main ]
-    tags: [ 'v*' ]
 
 jobs:
-  deploy:
+  deploy-staging:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,29 +29,20 @@ jobs:
     - name: Create deployment package
       run: |
         mkdir -p deployment
-        cp -r src/ deployment/
-        cp package.json deployment/
-        cp package-lock.json deployment/ 2>/dev/null || true
-        echo "Deployment package created"
+        cp -r . deployment/
+        cd deployment
+        rm -rf .github node_modules .git .gitignore
+        echo "✓ Deployment package created"
 
-    - name: Upload deployment artifact
-      uses: actions/upload-artifact@v4
+    - name: Deploy to Azure App Service (Staging)
+      uses: azure/webapps-deploy@v2
       with:
-        name: deployment-package
-        path: deployment/
-        retention-days: 30
+        app-name: 'github-actions-test-staging'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: deployment/
 
-    - name: Mock deployment (Staging)
+    - name: Verify deployment
       run: |
-        echo "🚀 Deploying to staging..."
-        echo "Package ready for: staging environment"
-        echo "Build artifact size: $(du -sh deployment/ | cut -f1)"
-
-    - name: Check deployment status
-      run: |
-        echo "✅ Deployment simulation complete"
-        echo "In a real scenario, this would deploy to your server/cloud platform"
-
-    - name: Create release (if tagged)
-      if: startsWith(github.ref, 'refs/tags/')
-      run: echo "📦 Release version ${{ github.ref }} ready for production"
+        echo "✅ Deployment to Azure Staging Complete!"
+        echo "Staging URL: https://github-actions-test-staging.azurewebsites.net"
+        echo "Time: $(date)"
