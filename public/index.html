@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Actions CI/CD Test</title>
+    <title>Sri Lanka | The Pearl of the Indian Ocean</title>
     <style>
         * {
             margin: 0;
@@ -12,8 +12,8 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+            background: linear-gradient(135deg, #0f766e 0%, #f59e0b 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -25,20 +25,21 @@
             background: white;
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            max-width: 740px;
             width: 100%;
             overflow: hidden;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f766e 0%, #115e59 60%, #f59e0b 100%);
             color: white;
             padding: 40px 20px;
             text-align: center;
         }
 
         .header h1 {
-            font-size: 2.5em;
+            font-family: Garamond, "Times New Roman", serif;
+            font-size: 2.6em;
             margin-bottom: 10px;
         }
 
@@ -53,7 +54,7 @@
 
         .card {
             background: #f8f9fa;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #0f766e;
             padding: 20px;
             margin-bottom: 20px;
             border-radius: 8px;
@@ -66,7 +67,7 @@
         }
 
         .card h3 {
-            color: #667eea;
+            color: #0f766e;
             margin-bottom: 10px;
             font-size: 1.3em;
         }
@@ -78,7 +79,7 @@
 
         .status {
             display: inline-block;
-            background: #10b981;
+            background: #0f766e;
             color: white;
             padding: 6px 12px;
             border-radius: 20px;
@@ -122,7 +123,7 @@
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background: #10b981;
+            background: #0f766e;
             animation: pulse 2s infinite;
         }
 
@@ -131,56 +132,21 @@
             50% { opacity: 0.5; }
         }
 
-        .button-group {
+        .tag-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 10px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
-        button {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-secondary {
-            background: #f3f4f6;
-            color: #333;
+        .tag {
+            background: white;
             border: 2px solid #e5e7eb;
-        }
-
-        .btn-secondary:hover {
-            background: #e5e7eb;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #f3f4f6;
-            border-top: 3px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 0.95em;
+            text-align: center;
+            color: #334155;
         }
 
         .info-text {
@@ -199,158 +165,113 @@
             border-top: 1px solid #e5e7eb;
         }
 
-        .success-message {
-            background: #d1fae5;
-            color: #065f46;
-            padding: 12px;
-            border-radius: 8px;
+        .fact-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
             margin-top: 10px;
-            display: none;
         }
 
-        .error-message {
-            background: #fee2e2;
-            color: #7f1d1d;
+        .fact {
+            background: white;
+            border-radius: 10px;
             padding: 12px;
-            border-radius: 8px;
-            margin-top: 10px;
-            display: none;
+            border: 2px solid #e5e7eb;
+        }
+
+        .fact strong {
+            display: block;
+            color: #0f766e;
+            font-size: 1.05em;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚀 CI/CD Test1234 Hub</h1>
-            <p>GitHub Actions Pipeline Monitor</p>
+            <h1>Sri Lanka</h1>
+            <p>The Pearl of the Indian Ocean</p>
         </div>
 
         <div class="content">
             <div class="card">
-                <h3>Welcome to the Test Server</h3>
-                <p>This application is designed to test GitHub Actions CI/CD workflows. The server is running and ready to receive requests.</p>
-                <div class="status">✓ Server Active</div>
+                <h3>🌴 Island Overview</h3>
+                <p>Sri Lanka is a tropical island nation off the southern tip of India, known for its biodiversity, ancient cities, tea country, and warm coastal waters.</p>
+                <div class="status">✓ Welcoming All Year</div>
             </div>
 
             <div class="card">
-                <h3>📊 API Status</h3>
-                <div id="status-info">
-                    <div class="loading"></div> Checking server status...
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>🔄 Available Workflows</h3>
+                <h3>🧭 Regions to Explore</h3>
                 <div class="workflows">
                     <div class="workflow">
-                        <span class="workflow-name">CI - Build & Test</span>
+                        <span class="workflow-name">Cultural Triangle</span>
                         <div class="workflow-status">
                             <span class="status-badge"></span>
-                            Active
+                            Anuradhapura, Polonnaruwa, Sigiriya
                         </div>
                     </div>
                     <div class="workflow">
-                        <span class="workflow-name">CD - Deploy</span>
+                        <span class="workflow-name">Hill Country</span>
                         <div class="workflow-status">
                             <span class="status-badge"></span>
-                            Active
+                            Kandy, Nuwara Eliya, Ella
+                        </div>
+                    </div>
+                    <div class="workflow">
+                        <span class="workflow-name">Southern Coast</span>
+                        <div class="workflow-status">
+                            <span class="status-badge"></span>
+                            Galle, Mirissa, Tangalle
                         </div>
                     </div>
                 </div>
-                <p class="info-text">Workflows run automatically on push and pull requests. View detailed logs on GitHub Actions.</p>
+                <p class="info-text">Short travel times mean you can pair ancient heritage with beaches and rainforests in a single trip.</p>
             </div>
 
             <div class="card">
-                <h3>🧪 Test the API</h3>
-                <div class="button-group">
-                    <button class="btn-primary" onclick="testAPI()">Test Root Endpoint</button>
-                    <button class="btn-secondary" onclick="testHealth()">Health Check</button>
+                <h3>🍵 Culture & Flavor</h3>
+                <p>Home to world-famous Ceylon tea, vibrant markets, and UNESCO heritage sites, Sri Lanka blends Buddhist traditions with colonial history and modern creativity.</p>
+                <div class="tag-grid">
+                    <div class="tag">Kandyan Dance</div>
+                    <div class="tag">Ayurveda</div>
+                    <div class="tag">Spice Gardens</div>
+                    <div class="tag">Ceylon Tea</div>
                 </div>
-                <div id="api-response"></div>
-                <div class="success-message" id="success-msg"></div>
-                <div class="error-message" id="error-msg"></div>
             </div>
 
             <div class="card">
-                <h3>📝 Next Steps</h3>
+                <h3>🐘 Wildlife Highlights</h3>
+                <p>Safaris in Yala, Wilpattu, and Minneriya offer chances to see elephants, leopards, and rare birds.</p>
+                <div class="fact-row">
+                    <div class="fact">
+                        <strong>Elephants</strong>
+                        Minneriya gathering in the dry season
+                    </div>
+                    <div class="fact">
+                        <strong>Leopards</strong>
+                        Yala National Park sightings
+                    </div>
+                    <div class="fact">
+                        <strong>Blue Whales</strong>
+                        Mirissa and Trincomalee tours
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>📅 Travel Tips</h3>
                 <p class="info-text">
-                    ✅ Push this repository to GitHub<br>
-                    ✅ Workflows will run automatically<br>
-                    ✅ View results in the Actions tab<br>
-                    ✅ Monitor builds and deployments<br>
-                    ✅ Integrate with your pipeline
+                    ✅ Best beach season: December to April (south and west) and May to September (east)<br>
+                    ✅ Currency: Sri Lankan Rupee (LKR)<br>
+                    ✅ Popular experiences: scenic rail rides, temple visits, coastal cuisine<br>
+                    ✅ Local greeting: "Ayubowan" (may you live long)
                 </p>
             </div>
         </div>
 
         <div class="footer">
-            <p>GitHub Actions CI/CD Test Repository | Ready for testing workflows</p>
+            <p>Discover Sri Lanka | Culture, coastlines, and unforgettable journeys</p>
         </div>
     </div>
-
-    <script>
-        // Check server status on page load
-        window.addEventListener('load', () => {
-            fetch('/health')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('status-info').innerHTML = `
-                        <div class="status">✓ Status: ${data.status}</div>
-                        <p class="info-text" style="margin-top: 10px;">Server is running and responding to requests.</p>
-                    `;
-                })
-                .catch(error => {
-                    document.getElementById('status-info').innerHTML = `
-                        <div class="status error">✗ Error connecting to server</div>
-                    `;
-                });
-        });
-
-        function testAPI() {
-            const responseDiv = document.getElementById('api-response');
-            const successMsg = document.getElementById('success-msg');
-            const errorMsg = document.getElementById('error-msg');
-
-            responseDiv.innerHTML = '<div class="loading"></div> Testing API...';
-            successMsg.style.display = 'none';
-            errorMsg.style.display = 'none';
-
-            fetch('/')
-                .then(response => response.json())
-                .then(data => {
-                    responseDiv.innerHTML = `<pre style="background: #f3f4f6; padding: 10px; border-radius: 6px; overflow-x: auto;">GET / \n\n${JSON.stringify(data, null, 2)}</pre>`;
-                    successMsg.textContent = '✓ API test successful!';
-                    successMsg.style.display = 'block';
-                })
-                .catch(error => {
-                    responseDiv.innerHTML = '';
-                    errorMsg.textContent = '✗ Error: ' + error.message;
-                    errorMsg.style.display = 'block';
-                });
-        }
-
-        function testHealth() {
-            const responseDiv = document.getElementById('api-response');
-            const successMsg = document.getElementById('success-msg');
-            const errorMsg = document.getElementById('error-msg');
-
-            responseDiv.innerHTML = '<div class="loading"></div> Testing health check...';
-            successMsg.style.display = 'none';
-            errorMsg.style.display = 'none';
-
-            fetch('/health')
-                .then(response => response.json())
-                .then(data => {
-                    responseDiv.innerHTML = `<pre style="background: #f3f4f6; padding: 10px; border-radius: 6px; overflow-x: auto;">GET /health \n\n${JSON.stringify(data, null, 2)}</pre>`;
-                    successMsg.textContent = '✓ Health check passed!';
-                    successMsg.style.display = 'block';
-                })
-                .catch(error => {
-                    responseDiv.innerHTML = '';
-                    errorMsg.textContent = '✗ Error: ' + error.message;
-                    errorMsg.style.display = 'block';
-                });
-        }
-    </script>
 </body>
 </html>
