@@ -21,6 +21,15 @@
             padding: 20px;
         }
 
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.18), transparent 35%),
+                        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.12), transparent 40%);
+            pointer-events: none;
+        }
+
         .container {
             background: white;
             border-radius: 12px;
@@ -46,6 +55,21 @@
         .header p {
             font-size: 1.1em;
             opacity: 0.9;
+        }
+
+        .hero-image {
+            margin: 24px auto 0;
+            border-radius: 16px;
+            overflow: hidden;
+            max-width: 640px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .hero-image img {
+            width: 100%;
+            display: block;
+            height: 240px;
+            object-fit: cover;
         }
 
         .content {
@@ -105,6 +129,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 10px;
         }
 
         .workflow-name {
@@ -149,6 +174,44 @@
             color: #334155;
         }
 
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 14px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #0f766e;
+            min-height: 140px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 8px 10px;
+            font-size: 0.95em;
+            color: white;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.6));
+        }
+
         .info-text {
             color: #666;
             font-size: 0.95em;
@@ -184,6 +247,21 @@
             color: #0f766e;
             font-size: 1.05em;
         }
+
+        @media (max-width: 680px) {
+            .content {
+                padding: 30px 16px;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .workflow {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
     </style>
 </head>
 <body>
@@ -191,6 +269,9 @@
         <div class="header">
             <h1>Sri Lanka</h1>
             <p>The Pearl of the Indian Ocean</p>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80" alt="Palm trees on a tropical Sri Lanka beach">
+            </div>
         </div>
 
         <div class="content">
@@ -226,6 +307,25 @@
                     </div>
                 </div>
                 <p class="info-text">Short travel times mean you can pair ancient heritage with beaches and rainforests in a single trip.</p>
+            </div>
+
+            <div class="card">
+                <h3>📸 Signature Views</h3>
+                <p>From misty tea plantations to coastal sunsets, the island offers a diverse range of landscapes within a few hours' drive.</p>
+                <div class="gallery">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80" alt="Lush tea fields in Sri Lanka">
+                        <div class="gallery-label">Tea Country</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Sri Lanka coastline at sunset">
+                        <div class="gallery-label">Golden Coast</div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="Waterfall and forest landscape">
+                        <div class="gallery-label">Rainforest Trails</div>
+                    </div>
+                </div>
             </div>
 
             <div class="card">
