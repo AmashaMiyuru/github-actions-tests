@@ -1,18 +1,18 @@
-name: CD - Deploy to Azure Staging
+name: CD - Deploy to Vercel Staging
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 jobs:
   deploy-staging:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Use Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18.x'
         cache: 'npm'
@@ -20,29 +20,11 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Build application
-      run: npm run build
+    - name: Install Vercel CLI
+      run: npm install --global vercel
 
-    - name: Run tests (Pre-deployment check)
-      run: npm test --if-present || echo "No tests"
-
-    - name: Create deployment package
-      run: |
-        mkdir -p deployment
-        cp -r . deployment/
-        cd deployment
-        rm -rf .github node_modules .git .gitignore
-        echo "✓ Deployment package created"
-
-    - name: Deploy to Azure App Service (Staging)
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'github-actions-test-staging'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: deployment/
-
-    - name: Verify deployment
-      run: |
-        echo "✅ Deployment to Azure Staging Complete!"
-        echo "Staging URL: https://github-actions-test-staging.azurewebsites.net"
-        echo "Time: $(date)"
+    - name: Deploy to Vercel (Staging)
+      run: vercel deploy --token=${{ secrets.VERCEL_TOKEN }}
+      env:
+        VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+        VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
